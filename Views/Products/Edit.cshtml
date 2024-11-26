@@ -1,0 +1,74 @@
+﻿@model prueba_addaccion.Models.Product
+
+<h1 class="text-2xl font-bold mb-4">Editar Producto</h1>
+<hr />
+
+<div class="max-w-md mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-md">
+    <form asp-action="Edit" method="post" class="space-y-6">
+
+        <!-- Campo oculto para el ProductId -->
+        <input type="hidden" name="ProductId" value="@Model.ProductId" />
+
+        <div class="form-group">
+            <label asp-for="ProductId" class="block text-sm font-medium text-gray-700">ID del Producto</label>
+            <input asp-for="ProductId" disabled
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span asp-validation-for="ProductId" class="text-sm text-red-600"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CategoryProductId" class="block text-sm font-medium text-gray-700">Categoría del Producto</label>
+            <select asp-for="CategoryProductId"
+                    class="form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    asp-items="@(ViewBag.CategoryList as SelectList)">
+                <option value="">Seleccione una categoría</option>
+            </select>
+            <span asp-validation-for="CategoryProductId" class="text-sm text-red-600"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProductDescription" class="block text-sm font-medium text-gray-700">Descripción del Producto</label>
+            <input asp-for="ProductDescription"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span asp-validation-for="ProductDescription" class="text-sm text-red-600"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Stock" class="block text-sm font-medium text-gray-700">Stock</label>
+            <input asp-for="Stock"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span asp-validation-for="Stock" class="text-sm text-red-600"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="block text-sm font-medium text-gray-700">Precio</label>
+            <input asp-for="Price"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span asp-validation-for="Price" class="text-sm text-red-600"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                <label asp-for="HaveECDiscountCheckbox" class="block text-sm font-medium text-gray-700 mr-4">¿Tiene Descuento?</label>
+                <input type="checkbox" name="HaveECDiscountCheckbox" value="true"
+                    @(Model.HaveECDiscountCheckbox ? "checked" : "") />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                <label asp-for="IsActiveCheckbox" class="block text-sm font-medium text-gray-700 mr-4">¿Está Activo?</label>
+                <input type="checkbox" name="IsActiveCheckbox" value="true"
+                    @(Model.IsActiveCheckbox ? "checked": "") />
+            </div>
+        </div>
+
+        <button type="submit"
+                class="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Guardar
+        </button>
+    </form>
+</div>
+
+<br />
+<a href="@Url.Action("Index")" class="text-blue-500">Volver al listado de productos</a>
